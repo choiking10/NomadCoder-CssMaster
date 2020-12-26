@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-around;
   height: 100vh;
-  
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  align-content: flex-end;
 }
 
 .child {
@@ -11,8 +13,7 @@
   background: peru;
   color: white;
   font-size: 50px;
-}
-
-.child:nth-child(1) {
-  order: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
