@@ -141,3 +141,82 @@ grid-area의 속성값으로들어가는건 ***string이 아니라는 점*** 체
 ## auto
 grid-template-columns 의 속성값으로 auto를 사용할 수 있는데 이 강의로는 잘 이해가안가고 아래의 참고하면 좋을 것 같은 블로그 껄 활용하자.
 https://studiomeal.com/archives/533
+
+# 2.4 Rows and Columns
+
+## grid-column-start grid-column-end
+이 두 속성은 child에 적용되는 속성으로 grid의 column에 어디서부터 어디까지 해당 child가 차지할지를 정의할 수 있지. 아래의 코드를보자.
+
+```css
+.father {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+.header {
+  background-color: #2ecc71;
+  grid-column-start: 1;
+  grid-column-end:2;
+}
+```
+어떤 것을 떠올렸는지는 모르겠지만 위의 코드를 실행해보면 grid-column-start와 end를 적용하기 전과 같을 꺼야. 
+
+그 이유는...
+
+***grid-column-start,grid-column-end 의 속성값들은 line의 번호를 의미하기 때문***
+
+이야 아래의 예를 들어보자면 아래 셀의 번호가 1인 친구는 line 1과 2로 이루어져있지.  
+1---2---3---4---5  
+|-1-|-2-|-3-|-4-|   
+그렇기 때문에 위의 css에서는 1번 cell만을  선택하게 된거야.
+따라서 만약 지금 선택한 child가 cell 1과 cell2를 모두 차지하게 하고 싶다면 start를 1로 end를 3으로 해야해.
+
+```css
+.father {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+.header {
+  background-color: #2ecc71;
+  grid-column-start: 1;
+  grid-column-end:3;
+}
+```
+
+이제 area와 똑같은 형태로 만들어 보자. 
+
+```css
+.father {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+.header {
+  background-color: #2ecc71;
+  grid-column-start: 1;
+  grid-column-end:5;
+}
+.content {
+  background-color: #3498db;
+  grid-column-start: 1;
+  grid-column-end:4;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+.nav {
+  background-color: #8e44ad;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+.footer {
+  background-color: #f39c12;
+  grid-column-start:1;
+  grid-column-end:5;
+}
+```
