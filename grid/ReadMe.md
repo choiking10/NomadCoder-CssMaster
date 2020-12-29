@@ -437,8 +437,69 @@ grid-template 속성은 모든 grid 속성을 사용할 수 있는 shortcut이�
 ```
 
 아! 참고로 ***grid-template은 repeat이 적용되지않아.***  
+
 위의 코드를 설명하자면
 "name name name name" row-size
 "name name name name" row-size
 "name name name name" row-size / column-size column-size column-size column-size 
 라고 생각하면 되겠네
+
+# 2.8 Place Items
+
+## justify-items
+justify-items는 수평적으로 아이템을 놓는 법에 관하여 정의하는 속성이야.
+
+- stretch 이 값은 가로 세로 바닥 위를 전부 가득채우는 형태야.
+- start는 시작지점에서 배치되고 
+- center이건 중앙에서 
+- end 이건 끝에서 배치됨.
+
+## align-items
+align-items는 수직적으로 아이템을 놓는 법에 관하여 정의하는 속성이야. 
+
+- stretch 이 값은 가로 세로 바닥 위를 전부 가득채우는 형태야.
+- start는 시작지점에서 배치되고 
+- center이건 중앙에서 
+- end 이건 끝에서 배치됨.
+
+그럼 이건 어떻게 배치될까?
+
+```css
+
+.grid {
+  display: grid;
+  gap: 10px;
+  height: 100vh;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.header {
+  background-color: #2ecc71;
+}
+.content {
+  background-color: #3498db;
+}
+.nav {
+  background-color: #8e44ad;
+}
+.footer {
+  background-color: #f39c12;
+}
+```
+
+## place-items (shortcut for <align-items> <justify-items>)
+얘는 shortcut이야. 
+아래처럼 사용할 수 있어.
+첫번째는 수직의 아이템 배치를 두번째는 수평의 아이템 배치를 설정할 수 있지.
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  height: 100vh;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+  place-items: start end;
+}
+```
+이건 수직으로는 시작지점에 수평으로는 끝지점에 배치된당.
