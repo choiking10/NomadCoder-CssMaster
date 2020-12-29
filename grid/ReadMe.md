@@ -307,3 +307,22 @@ python indexing처럼 -1을 써서 line의 끝까지를 표현할 수 있어. �
   grid-column: span 4;
 }
 ```
+
+# 2.6 Line Naming
+
+니콜라는 이걸 잘안써~ line에 네이밍하는거야 그냥. 아래와 같이 쓴다는것만 알아둬
+
+```css
+.father {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: [first-line] 100px [second-line] 100px [third-line] 100px [fourth-line] 100px [fifth-line];
+  grid-template-rows: repeat(4, 100px);
+}
+
+.content {
+  background-color: #3498db;
+  grid-column: first-line / fourth-line;
+  grid-row: 2/ span 2;
+}
+```
