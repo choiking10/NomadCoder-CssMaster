@@ -503,3 +503,52 @@ align-items는 수직적으로 아이템을 놓는 법에 관하여 정의하는
 }
 ```
 이건 수직으로는 시작지점에 수평으로는 끝지점에 배치된당.
+
+# 2.9 Place Content
+
+## justify-content
+앞에서 했던건 item 즉 셀 중에 즉 셀 안에 있는 것들을 어떻게 배치하는지에 관한 내용이었어. 여기서 말하는 content는 ***grid 전체를 말하는 거야***
+
+```css
+.grid {
+  background: black;
+  display: grid;
+  gap: 10px;
+  height: 100vh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  justify-content: center;
+}
+```
+이걸 실행해보면 grid 전체가 중간으로 옮겨간 모습을 볼 수 있을 꺼야. 
+이전에 flex 에서 사용할 수 있었던 속성들이 있었지. 그것들을 마찬가지로 사용할 수 있어.
+
+ - space-around
+ - space-between
+ - space-evenly
+ - start (default)
+ - end
+ - stretch (이건 먼지 잘모르겠음)
+
+## align-content
+이건 수직적으로 움직이는거야. 위랑 마찬가지니까 생략하도록할께. 수직적으로 적용하는건 항상 ***height가 없다면 정상적으로 작동하지 않을 수 있다는 사실을 잊지마***
+
+
+
+## stretchdp 에 대한 이해
+
+질문 
+```
+align-content: stretch 때문에 grid의 row가 늘어났다기보다
+grid-template-rows 를 repeat(4, 1fr) 로 설정했을때 이미 height 설정값 만큼
+늘어나는 것 같은데 아닌가요? ㅠㅠ
+```
+
+답변
+
+```
+명시된 높이가 있다면 해당수치가 고정되는것같습니다
+
+grid-template-rows: repeat(4, auto); 를 주고나서 stretch를 적용하면 늘어나고
+space-around같은 값을 적용하면 텍스트높이만큼만 적용되네요
+```
