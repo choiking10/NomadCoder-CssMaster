@@ -220,3 +220,90 @@ https://studiomeal.com/archives/533
   grid-column-end:5;
 }
 ```
+
+# 2.5 Shortcuts
+
+솔직히 위에 표현식은 조금 귀찮아. 그래서 아래와 같이 shortcut으로 쉽게 사용할수 있어. 
+
+## shortcut 1 start와 end 생략
+
+start와 end를 생략하고   
+grid-column: {start_value} / {end_value};  
+로 쓸수 있어  
+
+```css
+.father {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+
+.header {
+  background-color: #2ecc71;
+  grid-column: 1 / 5;
+}
+.content {
+  background-color: #3498db;
+  grid-column: 1 / 4;
+  grid-row: 2 / 4;
+}
+.nav {
+  background-color: #8e44ad;
+  grid-column: 4 / 5;
+  grid-row: 2 / 4;
+}
+.footer {
+  background-color: #f39c12;
+  grid-column:1 / 5;
+}
+```
+
+## shortcut 2 뒤에서부터 세기
+
+python indexing처럼 -1을 써서 line의 끝까지를 표현할 수 있어. 직관적으로 -2는 마지막에서 한칸 적은것을 표현할 수 있겠지? 아래를 보자.
+
+```css
+.header {
+  background-color: #2ecc71;
+  grid-column: 1 / -1;
+}
+.content {
+  background-color: #3498db;
+  grid-column: 1 / -2;
+  grid-row: 2 / -2;
+}
+.nav {
+  background-color: #8e44ad;
+  grid-column: 4 / -1;
+  grid-row: 2 / -2;
+}
+.footer {
+  background-color: #f39c12;
+  grid-column:1 / -1;
+}
+```
+
+## shortcut 3 - span 셀의 개수 세기
+
+이번에는 line이 아니라 셀의 개수를 셀수도 있어. 아까 그걸 아래와 같이 표현할수도 있지.
+
+```css
+.header {
+  background-color: #2ecc71;
+  grid-column: span 4;
+}
+.content {
+  background-color: #3498db;
+  grid-column: 1 / -2;
+  grid-row: 2/ span 2;
+}
+.nav {
+  background-color: #8e44ad;
+  grid-row: 2 / span 2;
+}
+.footer {
+  background-color: #f39c12;
+  grid-column: span 4;
+}
+```
