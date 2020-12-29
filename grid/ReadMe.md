@@ -326,3 +326,119 @@ python indexing처럼 -1을 써서 line의 끝까지를 표현할 수 있어. �
   grid-row: 2/ span 2;
 }
 ```
+
+# 2.7 Grid Template
+
+## fraction (fr)
+
+fr은 현재 컨테이너 상에서 (코드상에서는 grid) 차지할 수 있는 넓이를 가능한 모두를 사용해서 그 공간을 조각내는 단위야. 일종의 비율이라고 볼수도 있지. 아래 코드를 실행해보면 이해하기 쉬울꺼야. 
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 100px);
+}
+.header {
+  background-color: #2ecc71;
+}
+.content {
+  background-color: #3498db;
+}
+.nav {
+  background-color: #8e44ad;
+}
+.footer {
+  background-color: #f39c12;
+}
+```
+이코드를 실행하면 각 영역들이 균등하게 화면을 분할한 것을 확인할 수 있어.  
+만약 첫번째열을 더크게 하고싶다면 아래와같이 쓰면된다. 
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, 100px);
+}
+```
+
+그리고 fr는 전체가 아니라 할당된 크기를 fraction내는 거야. 아래의 것도 실행해보길 바래. 
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  width: 500px;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, 100px);
+}
+```
+
+## fr을 row에 적용할 때는 주의해!
+
+왜냐면 row는 언제나 길이의 제한이 없어서 높이가 없다면 높이를 지정해주지 않아. 아래의 코드를 실행해보면 그 이유를 알 수 있어.
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+```
+
+위의 코드를 적용하려면 아래와 같이 써야할거야. 
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  height: 100vh;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+```
+
+## grid-template를 사용하자.
+
+grid-template 속성은 모든 grid 속성을 사용할 수 있는 shortcut이라고 보면 됨.
+
+```css
+
+.grid {
+  display: grid;
+  gap: 10px;
+  height: 100vh;
+  grid-template: 
+  "header header header header" 1fr
+  "content content content nav" 2fr
+  "footer footer footer footer" 1fr / 1fr 1fr 1fr 1fr;
+}
+.header {
+  background-color: #2ecc71;
+  grid-area: header;
+}
+.content {
+  background-color: #3498db;
+  grid-area: content;
+}
+.nav {
+  background-color: #8e44ad;
+  grid-area: nav;
+}
+.footer {
+  background-color: #f39c12;
+  grid-area: footer;
+}
+```
+
+아! 참고로 ***grid-template은 repeat이 적용되지않아.***  
+위의 코드를 설명하자면
+"name name name name" row-size
+"name name name name" row-size
+"name name name name" row-size / column-size column-size column-size column-size 
+라고 생각하면 되겠네
