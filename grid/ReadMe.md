@@ -701,3 +701,24 @@ minmax는 말그대로 min과 max를 설정하는거야.
 ![](images/2020-12-30-20-15-19.png)
 
 커지면 이렇게 쫙늘어나게된다.
+
+# 2.12 auto-fit auto-fill
+auto-fill은 아래와 같이 빈공간을 만드는데 이 빈 공간에는 전부 grid가 들어가 있어. 
+
+auto fit은 반면에 창 사이즈맞게 좍 늘리는 형태로 만들어져. 
+이건 한 컬럼상에서 몇개의 item이 들어올지 예상할숭벗을때 유용할꺼야. 
+
+
+![](images/2020-12-30-20-43-33.png)
+
+
+### Live Server를 사용할 대 버그 발생
+
+Live Server를 사용할 때 first-child와 last-child가 먹지 않는 문제가 발생해서 오랬동안 해맸다.
+
+이유는 Live Server에서 임의로 html을 수정해서 그런데, html의 body마지막 부분에 script태그를 삽입하고, 단순하게 tag로 감싸지지 않은 text는 <text> 태그로 바꾸어 랜더링을 진행하였기 때문이다. 
+
+즉 .grid:first-child 쿼리에는 `<text>auto-fill</text>` 가 잡혔고,
+
+.grid:last-child 쿼리에는 `<script>...</script>` 가 잡혀서 정상적으로 query selector가 안먹힌 모양이다.
+
