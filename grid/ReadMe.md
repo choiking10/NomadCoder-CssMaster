@@ -552,3 +552,128 @@ grid-template-rows 를 repeat(4, 1fr) 로 설정했을때 이미 height 설정�
 grid-template-rows: repeat(4, auto); 를 주고나서 stretch를 적용하면 늘어나고
 space-around같은 값을 적용하면 텍스트높이만큼만 적용되네요
 ```
+
+# 2.10 Auto Columns and Rows
+
+## align-self, justify-self
+
+align-self와 justify-self는  align-items와 justify-items를 해당 child에만 적용할 수 있는 방법이야. 즉 grid container가 아니라 child에 적용하는 방식이야. 
+
+```css
+.grid {
+  background: black;
+  display: grid;
+  gap: 10px;
+  height: 100vh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+.header {
+  background-color: #2ecc71;
+  color: white;
+  align-self: end;
+  justify-self: center;
+}
+```
+
+### shortcut 
+place-self를 쓰면 이 두가지를 동시에 쓸 수 있어. 이것도 위에서 했던 place items 와 place content랑 같아.
+```css
+.header {
+  background-color: #2ecc71;
+  color: white;
+  place-self: end center;
+}
+```
+
+## 
+아래와 같은 상황을 가정하자.
+
+css는 다음과같고
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+.item:nth-child(odd) {
+  background-color: #2ecc71;
+  color: white;
+}
+.item:nth-child(even) {
+  background-color: #3498db;
+  color: white;
+}
+```
+
+html은 다음과같아.
+
+```html
+  <body>
+    <div class="grid">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+      <div class="item">8</div>
+      <div class="item">9</div>
+      <div class="item">10</div>
+      <div class="item">11</div>
+      <div class="item">12</div>
+      <div class="item">13</div>
+      <div class="item">14</div>
+      <div class="item">15</div>
+      <div class="item">16</div>
+      <div class="item">17</div>
+      <div class="item">18</div>
+      <div class="item">19</div>
+      <div class="item">20</div>
+    </div>
+  </body>
+```
+
+이걸 그대로작성해보면 4x4 grid를 초과한 경우 사이즈가 100px이 아니라 글자 크기가 된것을 확인할 수 있을 거야. 
+
+그 이유는 우리는 현재 20개의 element를 가지고 있는데 grid 상에서는 단 16개만 정의가 되어 있기 때문이지.
+
+![](images/2020-12-30-19-58-00.png)
+
+즉 row 4개에 대해서만 설정되어있기 때문이야.
+
+이걸 해결하기 위해서 grid-template-rows를 사용할꺼야.
+
+만약 너가 추가로 row를 사용하게 된다면 아래와 같은 설정을 하면 된당.
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  grid-auto-rows: 100px;
+}
+```
+![](images/2020-12-30-20-00-46.png)
+
+완성!
+
+만약 모두가 같다면 grid-template-rows를 설정하지 않아도 되겠지? 
+
+만약 새로운 element가 늘어날 때, row가 아니라 column을 넣고 싶다면 grid-auto-flow를 사용해.  
+grid-auto-flow는 기본값이 row지만 column으로 설정하면 column방향으로 늘릴 수 있어.
+
+```css
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  grid-auto-flow: column;
+}
+```
+![](images/2020-12-30-20-04-50.png)
+
