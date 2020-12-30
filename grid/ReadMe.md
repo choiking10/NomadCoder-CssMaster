@@ -722,3 +722,55 @@ Live Server를 사용할 때 first-child와 last-child가 먹지 않는 문제�
 
 .grid:last-child 쿼리에는 `<script>...</script>` 가 잡혀서 정상적으로 query selector가 안먹힌 모양이다.
 
+# 2.13 min-content max-content
+
+이게 슈퍼쿨하다는데 아직까지는 왜 슈퍼 쿨한지모르겠음.
+
+일단 코드는 아래와 같아
+```css
+.grid {
+  color: white;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: max-content min-content;
+  grid-auto-rows: 100px;
+  margin-bottom: 30px;
+}
+.item:nth-child(odd) {
+  background-color: #2ecc71;
+}
+.item:nth-child(even) {
+  background-color: #3498db;
+}
+```
+```html
+    <div class="grid">
+      <div class="item">This is a very long text</div>
+      <div class="item">This is a very long text</div>
+    </div>
+
+```
+그럼 이렇게 보여.
+![](images/2020-12-30-21-14-22.png)
+즉 max-content는 해당 컨텐츠가 늘어날 수 있는 최대한을 column의 width로 잡아주고, min-content는 해당 컨텐츠가 줄어들 수 있는 최소한을 column의 width로 잡아줘.
+
+이게 왜 좋냐면 minmax나 repeat을 활용할 수있다는 거지.
+
+```css
+.grid {
+  color: white;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
+  grid-auto-rows: 100px;
+  margin-bottom: 30px;
+}
+```
+
+이렇게하면 작을때는 이렇게
+![](images/2020-12-30-21-19-37.png)
+
+클때는 이렇게 변경되게 된다.
+![](images/2020-12-30-21-20-09.png)
+
+반응형만들때 좋은거같음
