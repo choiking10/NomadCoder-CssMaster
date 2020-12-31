@@ -1,1 +1,1 @@
-a,button{border-radius:7px;font-size:12px;text-transform:uppercase;padding:5px 10px;background-color:peru;font-weight:500;color:#fff;font-family:inherit}a{text-decoration:none}button{border:0}
+@media screen and (min-width:500px){body{background-color:red}}@media screen and (min-width:1000px){body{background-color:green}}

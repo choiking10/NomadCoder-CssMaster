@@ -1,11 +1,10 @@
 @import "_buttons";
 
-a {
-  @extend %button;
-  text-decoration: none;
-}
-
-button {
-  @extend %button;
-  border: none;
+body {
+  @include responsive("cell") {
+    background-color: red;
+  }
+  @include responsive("tablet") {
+    background-color: green;
+  }
 }

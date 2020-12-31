@@ -241,3 +241,38 @@ button {
 이렇게하면 둘이 같은 스타일을 가지게 된당.
 
 ![](images/2020-12-31-23-45-50.png)
+
+# 3.4 Awesome Mixins and Conclusions
+
+아직 안한 것중에 또 awesome한 것중하나는 contents야. content는 외부에서 정의한 style을 mixin 안에서 불러올수가 있어. 아래와같이 사용할 수있음.
+
+```scss
+@mixin responsive($device) {
+  @if $device == "cell" {
+    @media screen and (min-width: 500px) {
+      @content;
+    }
+  } @else if $device == "tablet" {
+    @media screen and (min-width: 1000px) {
+      @content;
+    }
+  }
+}
+
+body {
+  @include responsive("cell") {
+    background-color: red;
+  }
+  @include responsive("tablet") {
+    background-color: green;
+  }
+}
+```
+
+이건 반응형 웹을 만들때 유용할 거야. 만약 size가 500보다 크면 빨간색을, 1000보다 크면 녹색이 나오는 형태로 반응형 웹을 디자인할수있지.
+
+이런 mixins 들은 내가 직접 정의하지 않는다고 하더라도 아래와같이 사람들이 많이 만들어뒀어. 마치라이브러리와 같다고 할 수 있지.
+
+필요한 것들을 아래같은 사이트에서 찾아 써보라궁.
+
+https://github.com/Famolus/awesome-sass

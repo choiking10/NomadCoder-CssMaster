@@ -8,3 +8,15 @@
   color: white;
   font-family: inherit;
 }
+
+@mixin responsive($device) {
+  @if $device == "cell" {
+    @media screen and (min-width: 500px) {
+      @content;
+    }
+  } @else if $device == "tablet" {
+    @media screen and (min-width: 1000px) {
+      @content;
+    }
+  }
+}
