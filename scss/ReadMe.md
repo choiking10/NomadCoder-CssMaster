@@ -44,3 +44,76 @@ powershell을 관리자 관한으로 연 뒤
 를 실행해서 권한을 풀어주면 된다.
 
 참고 블로그 : https://cishome.tistory.com/138
+
+# 3.1 Variables and Nesting
+
+## variable
+
+variable은 가장 중요한 styles을 저장하고 싶을 때나, 색을 저장하고 싶을때 사용해.
+
+이제 새로운 file을 만들어보자. 예를들자면 `srsc/scss/_variables.scss` 야.  
+여기서 \_로 시작하는 파일은 css로 바꾸지 말아달라고 요청하는 것과 같아.
+
+이 파일에 새로운 변수를 선언하고 사용해보자.
+
+```scss
+$bg: crimson;
+```
+
+```scss
+@import "_variables";
+body {
+  background: $bg;
+  a {
+    color: blue;
+  }
+}
+```
+
+그럼 색이 변하는 것을 확인할 수 있을꺼야.
+
+## Nesting
+
+Nesting은 css의 계층적인 관계를 좀더 보기 쉽고 짜기 쉽게 작성할 수 있게 만들어 줘. 예를들어보자면 다음과 같아.
+
+```css
+h2 {
+  color: $bg;
+}
+.box {
+  margin-top: 20px;
+}
+.box h2 {
+  color: blue;
+}
+.box button {
+  color: red;
+}
+
+.box:hover {
+  background-color: green;
+}
+```
+
+위의 코드는 잘 작동하지만 솔직히 여기저기 소스코드가 떨어져있어서 보기 힘들기도 해. 반면 scss는 다음과같이 계층적구조를 쉽게 표현할 수 있어.
+
+```scss
+@import "_variables";
+h2 {
+  color: $bg;
+}
+.box {
+  margin-top: 20px;
+  &:hover {
+    color: green;
+  }
+  h2 {
+    color: blue;
+  }
+  button {
+    color: red;
+  }
+}
+```
+
+둘다 같은 표현방식으로 표현되지만 super cool하지.
