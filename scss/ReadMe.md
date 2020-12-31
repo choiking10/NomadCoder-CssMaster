@@ -117,3 +117,77 @@ h2 {
 ```
 
 둘다 같은 표현방식으로 표현되지만 super cool하지.
+
+# 3.2 Mixins
+
+Mixins를 배우기 위해서 새로운 파일을 만들어보자. 간편하게 `src/scss/_mixins.scss` 정도면 되겠네.
+
+여기서 mixins는 아래와같이 적용할 수 있어.
+
+```scss
+// src/scss/_mixins.scss
+@mixin link($color) {
+  text-decoration: none;
+  display: block;
+  color: $color;
+}
+```
+
+```scss
+// src/scss/styles.scss
+@import "_variables";
+@import "_mixins";
+a {
+  @include link(green);
+}
+```
+
+mixins는 위처럼 마치 함수와 같이 사용할 수 있어. 마치 program같지.
+아래와 같이 활용할 수 있을거야.
+
+```scss
+@import "_variables";
+@import "_mixins";
+
+a {
+  &:nth-child(odd) {
+    @include link(blue);
+  }
+  &:nth-child(even) {
+    @include link(red);
+  }
+}
+```
+
+이렇게 작성하게되면 더 적은량의 코드로 멋진 css를 작성할 수 있을 뿐 아니라 css의 길이까지 최적화시켜줘. (공통된 부분을 하나의 css로 빼준다던가 하는등의)
+
+거기다가 조건문도 가지고 있어!
+
+```scss
+//styles.scss
+@import "_variables";
+@import "_mixins";
+
+a {
+  &:nth-child(odd) {
+    @include link("odd");
+  }
+  &:nth-child(even) {
+    @include link("even");
+  }
+}
+```
+
+```scss
+@mixin link($word) {
+  text-decoration: none;
+  display: block;
+  @if $word == "odd" {
+    color: blue;
+  } @else {
+    color: red;
+  }
+}
+```
+
+와 근데 이건 진짜 수퍼 쿨하긴한데; 재사용가능성을 엄청나게 높여주네.
