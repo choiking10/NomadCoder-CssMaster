@@ -191,3 +191,53 @@ a {
 ```
 
 와 근데 이건 진짜 수퍼 쿨하긴한데; 재사용가능성을 엄청나게 높여주네.
+
+# 3.3 extends
+
+extend는 말 그대로 다른 코드를 확장 하거나 너가 코드를재사아요하고 싶을 때 사용하면 편해.
+
+```html
+<body>
+  <a href="">Log in</a>
+  <button>Log Out</button>
+</body>
+```
+
+요기에 class를 넣거나, 새로운 짓을 하지 않구 말이야.
+
+일단 a와 button에 같은 것을 적용할 건데 알다시피 a에는 text-decoration이 붙어있고, button에는 border가 기본으로 들어가 있지. 하지만 같은 스타일을 적용하고싶어!
+
+```scss
+// src/scss/_buttons.scss
+%button {
+  border-radius: 7px;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  background-color: peru;
+  font-weight: 500;
+  color: white;
+  font-family: inherit;
+}
+```
+
+이렇게하면 extend를 사용할수있어. 그리고 이걸 사용하는 법은
+
+```scss
+// src/scss/styles.scc
+@import "_buttons";
+
+a {
+  @extend %button;
+  text-decoration: none;
+}
+
+button {
+  @extend %button;
+  border: none;
+}
+```
+
+이렇게하면 둘이 같은 스타일을 가지게 된당.
+
+![](images/2020-12-31-23-45-50.png)
