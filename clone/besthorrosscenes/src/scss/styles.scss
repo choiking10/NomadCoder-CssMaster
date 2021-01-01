@@ -1,0 +1,147 @@
+@import "include-media";
+$breakpoints: (
+  small: 840px,
+  large: 1199px,
+);
+$smallLeft: 450px;
+$largeLeft: 600px;
+body,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0px;
+  font-family: RingsideExtraWide-Book, Blank, Helvetica Neue, Helvetica,
+    sans-serif;
+}
+.container {
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #eaecf4;
+    @include media("<small") {
+      width: 100vw;
+      height: 70vw;
+    }
+    @include media(">=small", "<large") {
+      width: $smallLeft;
+      height: 100vh;
+      position: fixed;
+    }
+    @include media(">=large") {
+      width: $largeLeft;
+      height: 100vh;
+      position: fixed;
+    }
+    h1,
+    h4,
+    h5 {
+      color: crimson;
+      text-align: justify;
+    }
+    h1 {
+    }
+    .explain {
+      margin-left: 10vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 50vh;
+
+      h4 {
+        margin-right: 25vh;
+      }
+
+      h5 {
+        margin-right: 11vh;
+      }
+
+      div {
+        margin-right: 5vh;
+      }
+      a {
+        color: #a49495;
+        font-size: 0.9rem;
+        &:hover {
+          color: black;
+        }
+        &:checked {
+          color: #a49495;
+        }
+      }
+    }
+    .title {
+      padding-left: 10vh;
+      padding-top: 10vh;
+    }
+  }
+  .contents {
+    display: grid;
+    @include media("<small") {
+      width: 100vw;
+    }
+    @include media(">=small", "<large") {
+      padding-left: $smallLeft;
+    }
+    @include media(">=large") {
+      padding-left: $largeLeft;
+    }
+    grid-auto-rows: 1fr;
+    gap: 10px;
+  }
+}
+
+.item {
+  background-color: #e33e37;
+  width: 100%;
+
+  @include media("<small") {
+    height: 70vw;
+  }
+  @include media(">=small", "<large") {
+    height: 50vw;
+  }
+  @include media(">=large") {
+    height: 30vw;
+  }
+}
+
+.scene {
+  display: grid;
+  grid-template-rows: 70px 1fr 50px;
+
+  @include media("<small") {
+    margin: 0px 40px 0px 40px;
+  }
+  @include media(">=small", "<large") {
+    margin: 0px 60px 0px 60px;
+  }
+  @include media(">=large") {
+    margin: 0px 120px 0px 80px;
+  }
+  height: 100%;
+  gap: 10px;
+  .scene-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .director {
+      text-align: right;
+    }
+  }
+  .scene-video {
+    display: block;
+  }
+  .scene-footer {
+    display: flex;
+    justify-content: flex-end;
+    div {
+      margin-left: 10px;
+    }
+  }
+  * {
+    color: white;
+  }
+}

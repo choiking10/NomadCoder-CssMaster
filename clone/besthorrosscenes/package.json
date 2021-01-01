@@ -1,17 +1,20 @@
 {
-  "name": "scss-masterclass",
+  "name": "best-horror-scenes",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "repository": "https://github.com/choiking10/NomadCoder-CssMaster",
   "author": "Yunho Choi <choiking10@naver.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.10",
     "del": "^4.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-csso": "^3.0.1",
     "gulp-sass": "^4.0.2",
+    "include-media": "^1.4.9",
     "node-sass": "^4.12.0"
   },
   "scripts": {
