@@ -8,7 +8,7 @@ $largeLeft: 600px;
 $largeContentPadding: 112px;
 $mediumContentPadding: 72px;
 $smallContentPadding: 50px;
-
+$keyColor: #e7473c;
 @mixin responsableChanger($attr, $small, $medium, $large) {
   @include media("<small") {
     #{$attr}: $small;
@@ -54,7 +54,7 @@ h5 {
     h1,
     h4,
     h5 {
-      color: crimson;
+      color: $keyColor;
       text-align: justify;
     }
     h1 {
@@ -107,16 +107,23 @@ h5 {
       padding-left: $largeLeft;
     }
     grid-auto-rows: 1fr;
-    gap: 10px;
   }
 }
 
 .item {
   position: relative;
-  background-color: #e33e37;
   width: 100%;
   height: 0px;
   padding-top: 80.25%;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1),
+      transparent,
+      transparent,
+      transparent,
+      transparent
+    ),
+    $keyColor;
 
   // @include media("<small") {
   //   height: 70vw;

@@ -112,3 +112,25 @@ Fixed 자체는 그냥 position을 Fixed로 박아주면 되는데, 문제는 �
   padding-left: $largeLeft;
 }
 ```
+
+### Linear gradient
+
+그라데이션은 다음과 같이 줄 수 있다.
+
+```scss
+$keyColor: #e7473c;
+.item {
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1),
+      transparent,
+      transparent,
+      transparent,
+      transparent
+    ), $keyColor;
+}
+```
+
+background 속성은 여러개 줄수있는데 여러개가 서로 블랜딩 되는형태인듯
+
+먼저 준 백그라운드일수록 앞에 배치되는것 같다 이걸로 이사이트에서배울건 대충 끝 ㅇㅋ
