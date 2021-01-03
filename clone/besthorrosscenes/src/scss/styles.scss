@@ -1,10 +1,25 @@
 @import "include-media";
 $breakpoints: (
   small: 840px,
-  large: 1199px,
+  large: 1400px,
 );
 $smallLeft: 450px;
 $largeLeft: 600px;
+$largeContentPadding: 112px;
+$mediumContentPadding: 72px;
+$smallContentPadding: 50px;
+
+@mixin responsableChanger($attr, $small, $medium, $large) {
+  @include media("<small") {
+    #{$attr}: $small;
+  }
+  @include media(">=small", "<large") {
+    #{$attr}: $medium;
+  }
+  @include media(">=large") {
+    #{$attr}: $large;
+  }
+}
 body,
 h1,
 h2,
@@ -21,6 +36,7 @@ h5 {
     flex-direction: column;
     justify-content: space-between;
     background-color: #eaecf4;
+    min-height: 640px;
     @include media("<small") {
       width: 100vw;
       height: 70vw;
@@ -44,22 +60,24 @@ h5 {
     h1 {
     }
     .explain {
-      margin-left: 10vh;
+      margin-left: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      height: 50vh;
+      height: 360px;
 
       h4 {
-        margin-right: 25vh;
+        @include responsableChanger(width, 70vw, 300px, 400px);
+        text-align: left;
       }
-
       h5 {
-        margin-right: 11vh;
+        @include responsableChanger(width, 70vw, 300px, 400px);
+        width: 400px;
       }
 
       div {
-        margin-right: 5vh;
+        @include responsableChanger(width, 80vw, 400px, 500px);
+        width: 500px;
       }
       a {
         color: #a49495;
@@ -94,36 +112,61 @@ h5 {
 }
 
 .item {
+  position: relative;
   background-color: #e33e37;
   width: 100%;
+  height: 0px;
+  padding-top: 80.25%;
 
-  @include media("<small") {
-    height: 70vw;
-  }
-  @include media(">=small", "<large") {
-    height: 50vw;
-  }
-  @include media(">=large") {
-    height: 30vw;
+  // @include media("<small") {
+  //   height: 70vw;
+  // }
+  // @include media(">=small", "<large") {
+  //   height: 50vw;
+  // }
+  // @include media(">=large") {
+  //   height: 30vw;
+  // }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .scene-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @include responsableChanger(
+      width,
+      calc(100% - #{$smallContentPadding} * 2),
+      calc(100% - #{$mediumContentPadding} * 2),
+      calc(100% - #{$largeContentPadding} * 2)
+    );
+
+    @include responsableChanger(
+      height,
+      calc(100% - #{$smallContentPadding} * 2),
+      calc(100% - #{$mediumContentPadding} * 2),
+      calc(100% - #{$largeContentPadding} * 2)
+    );
+
+    @include responsableChanger(
+      padding,
+      $smallContentPadding,
+      $mediumContentPadding,
+      $largeContentPadding
+    );
   }
 }
-
 .scene {
-  display: grid;
-  grid-template-rows: 70px 1fr 50px;
-
-  @include media("<small") {
-    margin: 0px 40px 0px 40px;
-  }
-  @include media(">=small", "<large") {
-    margin: 0px 60px 0px 60px;
-  }
-  @include media(">=large") {
-    margin: 0px 120px 0px 80px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
   height: 100%;
   gap: 10px;
   .scene-header {
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -147,6 +190,7 @@ h5 {
     }
   }
   .scene-footer {
+    height: 50px;
     display: flex;
     justify-content: flex-end;
     div {
