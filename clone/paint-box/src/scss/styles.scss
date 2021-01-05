@@ -2,7 +2,15 @@
 @import url("https://fonts.googleapis.com/css?family=Caladea:400&display=swap");
 @import "variables";
 
-div, a, h1, h2, h3, h4, h5{
+div,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+button {
   font-family: "Montserrat";
   font-weight: 500;
   font-size: 10px;
@@ -12,7 +20,6 @@ a {
   text-decoration: none;
   color: black;
   font-weight: 600;
-
 }
 body {
   margin: 0px;
@@ -21,27 +28,30 @@ body {
   position: fixed;
   height: 75px;
   width: 90vw;
-  padding-left: 5vW;
+  padding-left: 5vw;
+  padding-right: 5vw;
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
   .header__first {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+
     div:first-child {
-      padding-right:40px;
+      padding-right: 40px;
     }
   }
   .header__second {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     div:first-child {
-      padding-right:40px;
+      padding-right: 40px;
     }
   }
 }
@@ -55,8 +65,54 @@ body {
 }
 .contents {
   padding-top: 200px;
-  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .contents__introduction {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+    height: 50vw;
+    background-color: #f9dbbe;
+    img:first-child {
+      width: 50vw;
+      height: 50vw;
+    }
+
+    .intro__explain {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 50vw;
+      height: 50vw;
+      p {
+        width: 25vw;
+        font-size: 30px;
+        line-height: 38px;
+        font-family: "freight-display-pro", "Times New Roman", serif;
+        text-align: center;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        color: #5d5954;
+      }
+      button {
+        margin-top: 50px;
+        width: 240px;
+        height: 50px;
+        background-color: transparent;
+        font-weight: bold;
+        &:hover {
+          background-color: #5d5954;
+          color: white;
+        }
+      }
+    }
+  }
 }
+
 .footer {
   display: flex;
   align-items: center;
@@ -69,7 +125,7 @@ body {
     height: 140px;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
-    
+
     background-color: black;
     gap: 1px;
     .footer__box {
