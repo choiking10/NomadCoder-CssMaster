@@ -1,10 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Caladea:400&display=swap");
+@import "variables";
 
 div, a, h1, h2, h3, h4, h5{
   font-family: "Montserrat";
   font-weight: 500;
   font-size: 10px;
+  letter-spacing: 2.2px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+
 }
 body {
   margin: 0px;
@@ -43,5 +51,45 @@ body {
   align-items: center;
   img {
     padding-right: 10px;
+  }
+}
+.contents {
+  padding-top: 200px;
+  height: 100vh;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $footerBackgroundColor;
+  height: 270px;
+  .footer__contents {
+    display: grid;
+    width: 90vw;
+    height: 140px;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    
+    background-color: black;
+    gap: 1px;
+    .footer__box {
+      text-transform: uppercase;
+      font-weight: bold;
+      background-color: $footerBackgroundColor;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      div:first-child {
+        color: $footerTitleFontColor;
+        font-weight: 600;
+      }
+      div:last-child {
+        height: 100px;
+        display: flex;
+        font-weight: bold;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    }
   }
 }
